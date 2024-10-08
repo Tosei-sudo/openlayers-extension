@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueTodoApp</title>
+    <link rel="stylesheet" href="./lib/bootstrap.min.css">
+    <script src="./lib/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./lib/ol.css">
+    <link rel="stylesheet" href="./lib/nv.d3.css">
+    <link rel="stylesheet" href="./lib/vuetify.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css"> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-y: auto;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .ol-popup {
+            position: absolute;
+            background-color: white;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            bottom: 12px;
+            left: -50px;
+            min-width: 280px;
+        }
+
+        .ol-popup:after,
+        .ol-popup:before {
+            top: 100%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .ol-popup:after {
+            border-top-color: white;
+            border-width: 10px;
+            left: 48px;
+            margin-left: -10px;
+        }
+
+        .ol-popup:before {
+            border-top-color: #cccccc;
+            border-width: 11px;
+            left: 48px;
+            margin-left: -11px;
+        }
+
+        .ol-popup-closer {
+            text-decoration: none;
+            position: absolute;
+            top: 2px;
+            right: 8px;
+        }
+
+        .ol-popup-closer:after {
+            content: "✖";
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script src="./lib/vue.global.js"></script>
+    <script src="./lib/vue-router.global.js"></script>
+    <script src="./lib/axios.min.js"></script>
+    <script src="./lib/ol.js"></script>
+    <script src="./lib/d3.min.js"></script>
+    <script src="./lib/nv.d3.min.js"></script>
+    <script src="./lib/vuetify.min.js"></script>
+    <script src="./lib/geocoordsparser.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
