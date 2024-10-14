@@ -33,6 +33,75 @@ App.component('map-container', {
     `,
 });
 
+App.component('line-chart', {
+    props: {
+        data: {
+            type: Array,
+            default: [],
+        },
+        xAxisLabelFunction: {
+            type: Function,
+            default: (d) => {
+                let unix = d * 1000 + new Date().getTime();
+                let dT = new Date(unix)
+                return d3.time.format('%Y-%m-%d %H:%M:%S')(dT);
+            }
+        },
+    },
+    template: `
+        <div :id="id">
+            <svg width="960" height="300"></svg>
+        </div>
+    `,
+    data() {
+        return {
+            id: "line-chart-" + crypto.randomUUID(),
+            chart: null,
+            d3Element: null
+        }
+    },
+    methods: {
+        createChart() {
+            this.d3Element = d3.select('#' + this.id + ' svg');
+
+            nv.addGraph(() => {
+                this.chart = nv.models.lineChart().useInteractiveGuideline(true);
+
+                this.chart.forceY([0, 200]);
+                this.chart.xAxis.tickFormat(this.xAxisLabelFunction);
+                this.chart.yAxis.tickFormat(d3.format(',.2f'));
+
+                this.d3Element
+                    .datum(this.data)
+                    .call(this.chart);
+
+                nv.utils.windowResize(this.chart.update);
+
+                return this.chart;
+            });
+        },
+        updateData() {
+            if (this.chart === null) {
+                return;
+            }
+            this.d3Element
+                .datum(this.data)
+                .call(this.chart);
+        }
+    },
+    watch: {
+        data: {
+            handler() {
+                this.updateData();
+            },
+            deep: true
+        }
+    },
+    mounted() {
+        this.createChart();
+    }
+});
+
 // use vuetify
 
 const vuetify = Vuetify.createVuetify({
