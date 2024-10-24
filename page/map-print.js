@@ -1,23 +1,21 @@
 import olex, { LatestSearchEvent } from "../src/olex.js";
 
 const page = {
-    "path": "/map-overlay",
+    "path": "/map-print",
     "component": {
         "template": `
-            <div>
-                <map-container />
-                <div id="country-popup" class="ol-popup">
-                    <a href="#" id="country-popup-closer" class="ol-popup-closer"></a>
-                    <div id="country-popup-content"></div>
+            <div class="position-report-container">
+                <div class="position-report-map-container">
+                    <map-container ref="mapPrint" id="map-print"/>
+                    <div id="country-popup" class="ol-popup">
+                        <a href="#" id="country-popup-closer" class="ol-popup-closer"></a>
+                        <div id="country-popup-content"></div>
+                    </div>
+                </div>
+                <div class="no-print">
+                    <v-btn @click="printPositionReport()">Print</v-btn>
                 </div>
             </div>
-            <div id="center-image" >
-                <img id="img0" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img1" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img2" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img3" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img4" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-            <div>
             `,
         data() {
             return {
@@ -26,10 +24,32 @@ const page = {
             }
         },
         methods: {
+            calculateHeight() {
+                const element = document.getElementById("map-print");
+                const width = element.clientWidth;
+                const height = width / Math.sqrt(2);
+                element.style.height = height + "px";
+            },
+            printPositionReport() {
+                const element = document.getElementById("map-print");
+                element.style.width = "100%";
+                element.style.height = "100%";
+
+                this.map.updateSize();
+                // after rendering the map, print the page
+                this.$nextTick(() => {
+                    window.print();
+                    element.style.width = "100%";
+                    this.calculateHeight();
+                });
+            },
             async buildMap() {
+                this.calculateHeight();
+                window.addEventListener("resize", this.calculateHeight);
+
                 this.popupAddon = new olex.Addon.Popup("contextmenu");
 
-                this.map = olex.createMap('map', [
+                this.map = olex.createMap('map-print', [
                     olex.Raster.getOSMLayer(),
                 ], null, null, null, [this.popupAddon.overlay]);
 

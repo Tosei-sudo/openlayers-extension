@@ -41,10 +41,13 @@ App.component('line-chart', {
         },
         xAxisLabelFunction: {
             type: Function,
+            // default: (d) => {
+            //     let unix = d * 1000 + new Date().getTime();
+            //     let dT = new Date(unix)
+            //     return d3.time.format('%Y-%m-%d %H:%M:%S')(dT);
+            // }
             default: (d) => {
-                let unix = d * 1000 + new Date().getTime();
-                let dT = new Date(unix)
-                return d3.time.format('%Y-%m-%d %H:%M:%S')(dT);
+                return d;
             }
         },
     },
@@ -66,8 +69,9 @@ App.component('line-chart', {
 
             nv.addGraph(() => {
                 this.chart = nv.models.lineChart().useInteractiveGuideline(true);
+                // this.chart = nv.models.discreteBarChart()
 
-                this.chart.forceY([0, 200]);
+                this.chart.forceY([-110, 110]);
                 this.chart.xAxis.tickFormat(this.xAxisLabelFunction);
                 this.chart.yAxis.tickFormat(d3.format(',.2f'));
 
@@ -108,5 +112,6 @@ const vuetify = Vuetify.createVuetify({
 });
 
 App.use(vuetify);
+
 
 App.mount('#app');

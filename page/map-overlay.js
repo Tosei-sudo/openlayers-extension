@@ -1,7 +1,7 @@
 import olex, { LatestSearchEvent } from "../src/olex.js";
 
 const page = {
-    "path": "/map-overlay",
+    "path": "/map",
     "component": {
         "template": `
             <div>
@@ -11,13 +11,6 @@ const page = {
                     <div id="country-popup-content"></div>
                 </div>
             </div>
-            <div id="center-image" >
-                <img id="img0" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img1" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img2" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img3" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-                <img id="img4" src="https://static-00.iconduck.com/assets.00/plus-icon-2048x2048-z6v59bd6.png" alt="center image">
-            <div>
             `,
         data() {
             return {
