@@ -79,18 +79,11 @@ const page = {
                     offerToReceiveVideo: 0,
                 };
 
-                //configを元にRTCPeerConnectionを初期化
                 this.connection = new RTCPeerConnection(config);
 
-                //Sender側からデータチャネルを受け取った時発火するイベントハンドラ
                 this.connection.ondatachannel = this.receiveChannelCallback;
-                //Sender側のメディアストリームを受け取った時発火するイベントハンドラ
                 this.connection.ontrack = this.handleconnectionTrack;
 
-                //ICE Candidatesが生成された時発火するイベントハンドラ
-                //setLocalDescription(sdp)が呼ばれるとICE Candidatesの生成が裏で行われて発火する
-                //Sender側にICE Candidatesの情報を渡す必要があるので
-                //this.candidates変数にpushしてテキストボックスに表示する
                 this.connection.onicecandidate = e => {
                     if (e.candidate) {
                         this.candidates.push(e.candidate);

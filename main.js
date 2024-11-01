@@ -1,3 +1,11 @@
+import olex, { LatestSearchEvent } from './src/olex.js';
+
+window.olex = olex;
+window.LatestSearchEvent = LatestSearchEvent;
+
+Date.prototype.getTimezoneOffset = function () {
+    return 0;
+};
 
 import router from './router.js';
 
@@ -112,6 +120,5 @@ const vuetify = Vuetify.createVuetify({
 });
 
 App.use(vuetify);
-
 
 App.mount('#app');

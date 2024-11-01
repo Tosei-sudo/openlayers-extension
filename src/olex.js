@@ -187,15 +187,18 @@ class _Map_Vector_ {
         });
     }
 
-    static createSelectInteraction() {
-        return new ol.interaction.Select({
-            style: new ol.style.Style({
-                stroke: new ol.style.Stroke({
-                    color: 'red',
-                    width: 2
-                })
+    static createSelectInteraction(options = {}) {
+        options.style = new ol.style.Style({
+            stroke: new ol.style.Stroke({
+                color: 'red',
+                width: 2
+            }),
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 0, 0, 0.1)'
             })
         });
+
+        return new ol.interaction.Select(options);
     }
 }
 

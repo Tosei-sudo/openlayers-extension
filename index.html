@@ -5,12 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VueTodoApp</title>
-    <link rel="stylesheet" href="./lib/bootstrap.min.css">
-    <script src="./lib/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./lib/ol.css">
-    <link rel="stylesheet" href="./lib/nv.d3.css">
-    <link rel="stylesheet" href="./lib/vuetify.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./asset/lib.css">
+    <link href="./lib/vis-timeline-graph2d.min.css" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -132,6 +128,37 @@
             background-color: turquoise;
         }
 
+        .map-timeline-container {
+            position: absolute !important;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            background-color: rgba(255, 255, 255, 0.397);
+            padding: 6px;
+        }
+
+        .network-map .ol-attribution.ol-attribution {
+            bottom: 212px;
+        }
+
+        .network-map .ol-scale-line {
+            bottom: 220px;
+        }
+
+        .vis-item.vis-box.timeline-item {
+            background-image: url(https://media.istockphoto.com/id/1175387759/vector/camera-icon.jpg?s=612x612&w=0&k=20&c=paC1ZkU31dH2B5epXqT_cYOyca5uqh4v0WpFUldCUBE=);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            width: 24px;
+            height: 24px;
+        }
+
+        .vis-item.timeline-item.vis-selected {
+            background-color: #ff0000;
+            border-color: #ff0000;
+        }
+
         @page {
             size: 297mm 210mm;
             margin: 0mm;
@@ -154,21 +181,31 @@
                 display: none;
             }
         }
+
+        .fc-col-header-cell.fc-day-sun {
+            background-color: rgb(255, 80, 80);
+        }
+
+        .fc-col-header-cell.fc-day-sat {
+            background-color: rgb(80, 98, 255);
+        }
+
+        .fc-col-header-cell.fc-day-sat a,
+        .fc-col-header-cell.fc-day-sun a {
+            color: white;
+        }
     </style>
+    <style id="page-style"></style>
 </head>
 
 <body>
     <div id="app">
         <router-view></router-view>
     </div>
-    <script src="./lib/vue.global.js"></script>
-    <script src="./lib/vue-router.global.js"></script>
-    <script src="./lib/axios.min.js"></script>
-    <script src="./lib/ol.js"></script>
-    <script src="./lib/d3.min.js"></script>
-    <script src="./lib/nv.d3.min.js"></script>
-    <script src="./lib/vuetify.min.js"></script>
-    <script src="./lib/geocoordsparser.js"></script>
+    <script src="./asset/lib.js"></script>
+    <script src="./lib/fullcalendar.global.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script> -->
+    <script type="text/javascript" src="./lib/vis-timeline-graph2d.min.js"></script>
     <script type="module" src="main.js"></script>
 </body>
 
