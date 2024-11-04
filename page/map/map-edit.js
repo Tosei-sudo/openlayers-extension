@@ -8,7 +8,7 @@ const page = {
             <div id="subpanel" class="subpanel">
                 <v-btn-toggle v-model="editModeIndex" color="primary">
                     <v-btn icon="mdi-vector-polygon" @click="setDrawInteraction('Polygon')"></v-btn>
-                    <v-btn icon="mdi-vector-square" @click="setDrawInteraction('Box')"></v-btn>
+                    <v-btn icon="mdi-vector-square-plus" @click="setDrawInteraction('Box')"></v-btn>
                 </v-btn-toggle>
             </div>
             `,
@@ -23,6 +23,7 @@ const page = {
                 modifyInteraction: null,
                 popupAddon: null,
                 editModeIndex: undefined,
+                db: null
             }
         },
         methods: {
@@ -176,6 +177,7 @@ const page = {
             `;
 
             this.buildMap();
+
         }
     }
 };

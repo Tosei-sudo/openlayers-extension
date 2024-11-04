@@ -11,6 +11,7 @@ import graph from './page/graph.js';
 import sender from './page/video-sender.js';
 import receiver from './page/video-receiver.js';
 import network from './page/network.js';
+import table from './page/table.js';
 
 const router = VueRouter.createRouter({
     mode: 'hash',
@@ -25,6 +26,7 @@ const router = VueRouter.createRouter({
         sender,
         receiver,
         network,
+        table,
     ],
 });
 
